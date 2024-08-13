@@ -311,7 +311,7 @@
 
 	<script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="https://unpkg.com/bootstrap-table@1.22.1/dist/extensions/mobile/bootstrap-table-mobile.min.js"></script>
-	<script src="js/checkvisaslots.js"></script>
+	<script src="checkvisaslots.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <!-- DataTables Moment.js Integration -->
@@ -337,6 +337,7 @@
 				url: "https://cvs-data-public.s3.us-east-1.amazonaws.com/last-availability.json",
 				type: "GET",
 				dataType: "json",
+				cache: false,
 				success: function (resp) {
 					document.getElementById("file_createdon").textContent = convertToLocal(new Date(resp.createdon));
 					document.getElementById("file_lapse_time").textContent = getRelativeTime(new Date(resp.createdon));
