@@ -83,12 +83,27 @@ const units = {
 }, rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
 
 let getRelativeTime = (d1, d2 = new Date()) => {
+    // Ensure d1 and d2 are valid Date objects
+    if (!(d1 instanceof Date) || !(d2 instanceof Date) || isNaN(d1) || isNaN(d2)) {
+        return "Invalid date";
+    }
+    
     let elapsed = d1 - d2;
+    
+    // Check if elapsed is finite
+    if (!isFinite(elapsed)) {
+        return "Invalid time";
+    }
+    
     // "Math.abs" accounts for both "past" & "future" scenarios
-    for (let u in units)
-        if (Math.abs(elapsed) > units[u] || u === 'second')
-            return rtf.format(Math.round(elapsed / units[u]), u)
-}
+    for (let u in units) {
+        if (Math.abs(elapsed) > units[u] || u === 'second') {
+            return rtf.format(Math.round(elapsed / units[u]), u);
+        }
+    }
+    
+    return "Now";
+};
 
 $('#galleryModal').on('show.bs.modal', function (e) {
     document.getElementById("img-helper-info").style.display = "none";

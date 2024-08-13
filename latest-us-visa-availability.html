@@ -337,7 +337,6 @@
 				url: "https://cvs-data-public.s3.us-east-1.amazonaws.com/last-availability.json",
 				type: "GET",
 				dataType: "json",
-				cache: false,
 				success: function (resp) {
 					document.getElementById("file_createdon").textContent = convertToLocal(new Date(resp.createdon));
 					document.getElementById("file_lapse_time").textContent = getRelativeTime(new Date(resp.createdon));
